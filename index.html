@@ -20,6 +20,17 @@ a{color:#FFFFFF}a:hover{color:#E3E7EE}
 @media (prefers-reduced-motion: reduce){.orbit-in,.orbit-in-2{animation:none}}
 </style>
 
+<style>
+html.orbit-leaving .orbit-in,html.orbit-leaving .orbit-in-2{transition:opacity .45s ease,transform .6s cubic-bezier(.7,0,.3,1),filter .45s ease;opacity:0 !important;transform:translateY(-18px) scale(.98) !important;filter:blur(6px);animation:none}
+html.orbit-leaving img{transition:transform 1s cubic-bezier(.7,0,.3,1),filter 1s ease;transform:scale(1.08);filter:brightness(.8)}
+#orbit-wipe{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden}
+#orbit-wipe .ow-ring{position:absolute;left:var(--x);top:var(--y);width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:1px solid rgba(255,255,255,.85)}
+#orbit-wipe .ow-r1{animation:owRing .9s cubic-bezier(.6,0,.2,1) forwards}
+#orbit-wipe .ow-r2{border-color:rgba(157,180,240,.9);animation:owRing .9s cubic-bezier(.6,0,.2,1) .08s forwards}
+#orbit-wipe .ow-fill{position:absolute;inset:0;background:#FFFFFF;clip-path:circle(0px at var(--x) var(--y));animation:owFill .8s cubic-bezier(.77,0,.18,1) .12s forwards}
+@keyframes owRing{0%{transform:scale(1) rotate(0deg);opacity:1}100%{transform:scale(70) rotate(40deg);opacity:0}}
+@keyframes owFill{to{clip-path:circle(150vmax at var(--x) var(--y))}}
+</style>
 </head>
 <body>
 
@@ -49,6 +60,28 @@ a{color:#FFFFFF}a:hover{color:#E3E7EE}
 </div>
 
 </div>
-
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function cleanup(){var o=document.getElementById('orbit-wipe');if(o)o.remove();document.documentElement.classList.remove('orbit-leaving');}
+  window.addEventListener('pageshow',function(e){if(e.persisted)cleanup();});
+  document.querySelectorAll('a[href^="/detail/"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0)return;
+      e.preventDefault();
+      var url=a.getAttribute('href');
+      try{sessionStorage.setItem('orbit-enter','1');}catch(_){}
+      if(reduce){location.href=url;return;}
+      var r=a.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+      var w=document.createElement('div');w.id='orbit-wipe';
+      w.innerHTML='<div class="ow-ring ow-r1"></div><div class="ow-ring ow-r2"></div><div class="ow-fill"></div>';
+      w.style.setProperty('--x',x+'px');w.style.setProperty('--y',y+'px');
+      document.body.appendChild(w);
+      document.documentElement.classList.add('orbit-leaving');
+      setTimeout(function(){location.href=url;},820);
+    });
+  });
+})();
+</script>
 </body>
 </html>

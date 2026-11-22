@@ -15,6 +15,22 @@ a{color:#1E4FD8}a:hover{color:#0F2A5C}
 input,select,textarea{font:inherit}
 </style>
 
+<script>
+(function(){try{if(sessionStorage.getItem('orbit-enter')==='1'){sessionStorage.removeItem('orbit-enter');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('orbit-enter');}}catch(_){}})();
+</script>
+<style>
+html.orbit-enter header{animation:oeDown .8s cubic-bezier(.2,.7,.2,1) .15s both}
+html.orbit-enter #top > div:first-child > *{animation:oeUp 1s cubic-bezier(.2,.7,.2,1) both}
+html.orbit-enter #top > div:first-child > *:nth-child(1){animation-delay:.25s}
+html.orbit-enter #top > div:first-child > *:nth-child(2){animation-delay:.35s}
+html.orbit-enter #top > div:first-child > *:nth-child(3){animation-delay:.48s}
+html.orbit-enter #top > div:first-child > *:nth-child(4){animation-delay:.6s}
+html.orbit-enter #top > div:first-child > *:nth-child(5){animation-delay:.7s}
+html.orbit-enter #top > div:last-child svg{animation:oeOrbit 1.6s cubic-bezier(.2,.7,.2,1) .3s both;transform-origin:50% 50%}
+@keyframes oeDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:none}}
+@keyframes oeUp{from{opacity:0;transform:translateY(28px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes oeOrbit{from{opacity:0;transform:scale(.6) rotate(-35deg)}to{opacity:1;transform:none}}
+</style>
 <style>html{scroll-behavior:smooth}
 .plan-card{cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}
 .plan-card:hover{border-color:#9DB4F0 !important}
