@@ -15,7 +15,14 @@ a{color:#1E4FD8}a:hover{color:#0F2A5C}
 input,select,textarea{font:inherit}
 </style>
 
-<style>html{scroll-behavior:smooth}</style>
+<style>html{scroll-behavior:smooth}
+.plan-card{cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}
+.plan-card:hover{border-color:#9DB4F0 !important}
+.plan-card.is-selected{border-color:#1E4FD8 !important;box-shadow:0 6px 20px rgba(30,79,216,0.12)}
+.plan-card:focus-visible{outline:3px solid #9DB4F0;outline-offset:3px}
+.plan-btn{border:1px solid #CBD2DD;color:#0F172A;background:#FFFFFF;transition:background-color .2s ease,color .2s ease}
+.plan-card.is-selected .plan-btn{background:#1E4FD8;border-color:#1E4FD8;color:#FFFFFF}
+</style>
 </head>
 <body>
 
@@ -207,7 +214,7 @@ input,select,textarea{font:inherit}
 <p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: #1E4FD8; font-family: 'Space Grotesk', sans-serif; text-align: center">PRICE</p>
 <h2 style="margin: 8px 0 44px; font-size: clamp(26px, 3vw, 36px); line-height: 1.4; font-weight: 700; text-align: center">料金プラン</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto">
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; gap: 18px">
+<div class="plan-card" data-plan="ライト" tabindex="0" role="button" aria-pressed="false" style="background: #FFFFFF; border: 2px solid #E3E7EE; border-radius: 20px; padding: 39px; display: flex; flex-direction: column; gap: 18px">
 <div>
 <h3 style="margin: 0; font-size: 20px; font-weight: 700">ライト</h3>
 <p style="margin: 4px 0 0; font-size: 14px; color: #64748B">公式サイト作成のみ</p>
@@ -219,9 +226,9 @@ input,select,textarea{font:inherit}
 <li>写メ日記・WEB予約受付</li>
 <li>独自ドメイン設定サポート</li>
 </ul>
-<a href="#contact" style="margin-top: auto; text-align: center; text-decoration: none; border: 1px solid #CBD2DD; color: #0F172A; font-weight: 700; padding: 15px 24px; border-radius: 999px">このプランで相談する</a>
+<a href="#contact" class="plan-btn" style="margin-top: auto; text-align: center; text-decoration: none; font-weight: 700; padding: 15px 24px; border-radius: 999px">このプランで相談する</a>
 </div>
-<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; gap: 18px">
+<div class="plan-card" data-plan="スタンダード" tabindex="0" role="button" aria-pressed="false" style="background: #FFFFFF; border: 2px solid #E3E7EE; border-radius: 20px; padding: 39px; display: flex; flex-direction: column; gap: 18px">
 <div>
 <h3 style="margin: 0; font-size: 20px; font-weight: 700">スタンダード</h3>
 <p style="margin: 4px 0 0; font-size: 14px; color: #64748B">公式サイト＋ORBIT CMS</p>
@@ -233,9 +240,9 @@ input,select,textarea{font:inherit}
 <li>写メ日記・WEB予約受付</li>
 <li>独自ドメイン設定サポート</li>
 </ul>
-<a href="#contact" style="margin-top: auto; text-align: center; text-decoration: none; border: 1px solid #CBD2DD; color: #0F172A; font-weight: 700; padding: 15px 24px; border-radius: 999px">このプランで相談する</a>
+<a href="#contact" class="plan-btn" style="margin-top: auto; text-align: center; text-decoration: none; font-weight: 700; padding: 15px 24px; border-radius: 999px">このプランで相談する</a>
 </div>
-<div style="background: #FFFFFF; border: 2px solid #1E4FD8; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; gap: 18px">
+<div class="plan-card is-selected" data-plan="プロ" tabindex="0" role="button" aria-pressed="true" style="background: #FFFFFF; border: 2px solid #E3E7EE; border-radius: 20px; padding: 39px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px">
 <div>
 <h3 style="margin: 0; font-size: 20px; font-weight: 700">プロ</h3>
@@ -252,7 +259,7 @@ input,select,textarea{font:inherit}
 <li>管理画面内でパネル作成・登録</li>
 <li>生成上限を超えるとサイト内課金</li>
 </ul>
-<a href="#contact" style="margin-top: auto; text-align: center; text-decoration: none; background: #1E4FD8; color: #FFFFFF; font-weight: 700; padding: 16px 24px; border-radius: 999px">このプランで相談する</a>
+<a href="#contact" class="plan-btn" style="margin-top: auto; text-align: center; text-decoration: none; font-weight: 700; padding: 15px 24px; border-radius: 999px">このプランで相談する</a>
 </div>
 </div>
 <p style="margin: 28px auto 0; max-width: 1200px; font-size: 13px; color: #64748B">※ご契約には、風営法に基づく届出が受理されていることの確認が必要です。届出確認書をお預かりし、確認後に店舗IDを発行します。<br>※18歳未満の方が在籍・掲載されるサイトは制作できません。</p>
@@ -403,6 +410,22 @@ input,select,textarea{font:inherit}
 </footer>
 
 </div>
-
+<script>
+(function(){
+  var cards=document.querySelectorAll('.plan-card');
+  var sel=document.querySelector('select[name="plan"]');
+  function pick(card){
+    cards.forEach(function(c){c.classList.remove('is-selected');c.setAttribute('aria-pressed','false');});
+    card.classList.add('is-selected');card.setAttribute('aria-pressed','true');
+    if(sel){var n=card.getAttribute('data-plan');for(var i=0;i<sel.options.length;i++){if(sel.options[i].text.indexOf(n+'（')===0){sel.selectedIndex=i;break;}}}
+  }
+  cards.forEach(function(c){
+    c.addEventListener('click',function(){pick(c);});
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(c);}});
+  });
+  if(sel){sel.addEventListener('change',function(){var t=sel.options[sel.selectedIndex].text;cards.forEach(function(c){if(t.indexOf(c.getAttribute('data-plan')+'（')===0)pick(c);});});}
+  var d=document.querySelector('.plan-card.is-selected'); if(d) pick(d);
+})();
+</script>
 </body>
 </html>
